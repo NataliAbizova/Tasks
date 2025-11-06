@@ -6,7 +6,7 @@ import java.io.IOException;
 
 
 public class ReaderFile {
-    public static void main(String[] args) throws NewIOException {
+    public static void main(String[] args) {
         String src = "C:\\Users\\natab\\OneDrive\\Рабочий стол\\testt.txt";
 
         try (FileOutputStream outputStream = new FileOutputStream(src);
@@ -17,8 +17,8 @@ public class ReaderFile {
             byte[] bytes = inputStream.readAllBytes();
             System.out.println(new String(bytes));
 
-        }catch (IOException e){
-            throw new NewIOException("File not found");
+        } catch (IOException e) {
+            new NewIOException("File not found" + e.getMessage());
         }
     }
 }
