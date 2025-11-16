@@ -1,5 +1,7 @@
 package H3_Decorator;
 
+import java.util.Arrays;
+
 public class EncryptionDecorator extends DataSourseDecorator {
 
     EncryptionDecorator(DataSource dataSource) {
@@ -7,24 +9,23 @@ public class EncryptionDecorator extends DataSourseDecorator {
     }
 
     @Override
-    public void write(String data) {
-        super.write(encription(data));
+    public void writeData(String data) {
+        super.writeData(encription(data));
     }
 
     @Override
-    public String read() {
-        return decryption(super.read());
+    public String readData() {
+        return decryption(super.readData());
     }
 
     private String decryption(String data) {
         byte[] dataByte = data.getBytes();
+
         StringBuilder stringBuilder = new StringBuilder();
 
         for (int i = 0; i < dataByte.length; i++) {
-
-            stringBuilder.append(dataByte[i] + 7);
+            stringBuilder.append((char)(dataByte[i] + 1));
         }
-
         return stringBuilder.toString();
     }
 
@@ -33,9 +34,8 @@ public class EncryptionDecorator extends DataSourseDecorator {
         StringBuilder stringBuilder = new StringBuilder();
 
         for (int i = 0; i < dataByte.length; i++) {
-            stringBuilder.append(dataByte[i] >> 3);
+            stringBuilder.append((char) (dataByte[i] - 1));
         }
-
         return stringBuilder.toString();
     }
 }

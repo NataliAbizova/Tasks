@@ -8,12 +8,12 @@ public abstract class DataSourseDecorator implements DataSource {
     }
 
     @Override
-    public String read() {
-        return dataSource.read();
+    public String readData() {
+        return dataSource.readData();
     }
 
     @Override
-    public void write(String data) {
-        dataSource.write(data);
+    public void writeData(String data) {
+        dataSource.writeData(data);
     }
 }
